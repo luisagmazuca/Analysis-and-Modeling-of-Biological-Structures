@@ -36,38 +36,31 @@ def calc_hydrophobicity(sequence, start, w_len, dct):
     add = 0
     window= ""
     for aa in sequence:
-        if len(window) <= w_len:
+        if len(window) < w_len:
             window += sequence[i]
             i+=1
     for aa in window:
         key= aa
         add += dct[key]
     avg = add/w_len
-    return avg
+    return round(avg,2)
 
-avg_hydrophobicity= calc_hydrophobicity(seq, 0, 5, kd_hydrophobicity)
-        
+#part (d)
+avg_hydrophobicity= calc_hydrophobicity(seq, 0, 10, kd_hydrophobicity)
+avg_Q121 = calc_hydrophobicity(seq, 121, 10, kd_hydrophobicity)
+
+#Place function in a loop to do parts (e) and (f)
+kd_avgs= []
+start = 0
+w_len= 20
+for i in range(len(seq)):
+    avg = calc_hydrophobicity(seq, start, w_len, kd_hydrophobicity)
+    kd_avgs.append(avg)
+    start +=10
+    if start > len(seq)-w_len:
+        break
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+#print list
+for item in kd_avgs:
+    print(item)
