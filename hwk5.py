@@ -14,7 +14,7 @@ def get_sequence(sequence):
     for line in sequence_list: 
         parsed_sequence.append(line.split())
     i=0
-    seq= "" #empty string
+    seq= "" 
     for line in parsed_sequence:
         if i > 0:
             seq += seq.join(line)
@@ -23,6 +23,7 @@ def get_sequence(sequence):
 
 seq= get_sequence(sequence1)
 
+#Dictionary to store kd hydrophobicity scores
 kd_hydrophobicity= {
     "I":4.5, "V":4.2, "L":3.8, "F":2.8,
     "C":2.5, "M":1.9, "A":1.8, "G":-0.4,
@@ -47,7 +48,10 @@ def calc_hydrophobicity(sequence, start, w_len, dct):
 
 #part (d)
 avg_hydrophobicity= calc_hydrophobicity(seq, 0, 10, kd_hydrophobicity)
-avg_Q121 = calc_hydrophobicity(seq, 121, 10, kd_hydrophobicity)
+avg_Q121 = calc_hydrophobicity(seq, 120, 10, kd_hydrophobicity)
+print(avg_hydrophobicity)
+print(avg_Q121)
+
 
 #Place function in a loop to do parts (e) and (f)
 kd_avgs= []
@@ -59,7 +63,6 @@ for i in range(len(seq)):
     start +=10
     if start > len(seq)-w_len:
         break
-    
     
 #print list
 for item in kd_avgs:
